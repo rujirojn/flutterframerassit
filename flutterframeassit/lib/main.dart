@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 void main() {
   runApp(MyApp());
@@ -51,6 +52,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final DatabaseReference database = FirebaseDatabase.instance.reference().child("Click");
 
   void _incrementCounter() {
     setState(() {
@@ -60,6 +62,23 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+      // database.push().set({'insert' : 'insert'+_counter.toString()});
+
+      //insert
+      database.reference().update({'key'+(_counter).toString() : 'insert'+(_counter).toString()});
+      
+      //update
+      database.reference().update({'key'+(_counter - 1).toString() : 'update'+(_counter-1).toString()});
+
+      //delete
+      database.child('key'+(_counter - 3).toString()).remove();
+
+      //get
+      database.child('key'+(_counter).toString()).once().then((DataSnapshot snapshot) {
+        print('Data : ${snapshot.value}');
+      });
+      
+      // database.push().set({'insert' : 'insert'+_counter.toString()});
     });
   }
 
