@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-
 import 'package:flutterframeassit/Farm.dart';
 import 'package:flutterframeassit/WaterPlants.dart';
 
@@ -11,7 +10,7 @@ void main() {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {updat
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -60,13 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
-      // database.push().set({'insert' : 'insert'+_counter.toString()});
 
       //insert
       database.reference().update({'key'+(_counter).toString() : 'insert'+(_counter).toString()});
@@ -81,7 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
       database.child('key'+(_counter).toString()).once().then((DataSnapshot snapshot) {
         print('Data : ${snapshot.value}');
       });
-      
       // database.push().set({'insert' : 'insert'+_counter.toString()});
     });
   }

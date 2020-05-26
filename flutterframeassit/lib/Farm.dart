@@ -15,29 +15,29 @@ class FarmScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text("\$2589.90", style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.w700),),
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // children: <Widget>[
+                  //   Text("\$2589.90", style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.w700),),
 
-                    Container(
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.notifications, color: Colors.lightBlue[100],),
-                          SizedBox(width: 16,),
-                          CircleAvatar(
-                            radius: 25,
-                            backgroundColor: Colors.white,
-                            child: ClipOval(
-                              // child: Image.asset("assets/dp.jpg", fit: BoxFit.contain,),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                  //   Container(
+                  //     child: Row(
+                  //       children: <Widget>[
+                  //         Icon(Icons.notifications, color: Colors.lightBlue[100],),
+                  //         SizedBox(width: 16,),
+                  //         CircleAvatar(
+                  //           radius: 25,
+                  //           backgroundColor: Colors.white,
+                  //           child: ClipOval(
+                  //             // child: Image.asset("assets/dp.jpg", fit: BoxFit.contain,),
+                  //           ),
+                  //         )
+                  //       ],
+                  //     ),
+                  //   )
+                  // ],
                 ),
 
-                Text("Available Balance", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16, color: Colors.blue[100]),),
+                Text("Current TIme", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16, color: Colors.blue[100]),),
 
                 SizedBox(height : 24,),
 
@@ -267,7 +267,7 @@ class FarmScreen extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: 2,
                         padding: EdgeInsets.all(0),
-                        controller: ScrollController(keepScrollOffset: false),
+                        // controller: ScrollController(keepScrollOffset: false),
                       ),
 
                       //now expense
@@ -325,7 +325,7 @@ class FarmScreen extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: 2,
                         padding: EdgeInsets.all(0),
-                        controller: ScrollController(keepScrollOffset: false),
+                        // controller: ScrollController(keepScrollOffset: false),
                       ),
 
                       //now expense
@@ -333,7 +333,7 @@ class FarmScreen extends StatelessWidget {
 
                     ],
                   ),
-                  controller: scrollController,
+                  // controller: scrollController,
                 ),
               );
             },

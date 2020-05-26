@@ -10,7 +10,7 @@ class WaterPlantsScreen extends StatelessWidget {
         builder: (context, scrollController){
           return Container(
             child: SingleChildScrollView(
-              controller: scrollController,
+              // controller: scrollController,// is lock ?
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
