@@ -88,6 +88,14 @@ class _MyHomePageState extends State<MyHomePage> {
  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50), // here the desired height
+        child: AppBar(
+         title: Text('Orchid Care'),
+         backgroundColor: Colors.blue,
+         centerTitle: true,
+        )
+       ),
       backgroundColor: Color.fromRGBO(38, 81, 158, 1),
       bottomNavigationBar: BottomNavigationBar(
         
@@ -120,3 +128,4 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class EffectTab {
 }
+
