@@ -1,11 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+class YellowBird extends StatefulWidget {
+  const YellowBird({ Key key }) : super(key: key);
 
-class WaterPlantsScreen extends StatelessWidget {
-  bool switch1 = false;
-  
   @override
+  _YellowBirdState createState() => _YellowBirdState();
+}
+
+class _YellowBirdState extends State<YellowBird> {
+  bool switch1 = false;
+
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
@@ -270,7 +274,7 @@ class WaterPlantsScreen extends StatelessWidget {
                         Switch(
                           value: switch1,
                           activeColor: Color.fromRGBO(50, 172, 121, 1),
-                          onChanged: (_){switch1 = !switch1;},
+                          onChanged: (_){update1();},
                         ),
                         // CupertinoSwitch(
                         //   value: true,
@@ -294,5 +298,12 @@ class WaterPlantsScreen extends StatelessWidget {
         maxChildSize: 0.95,
       ),
     );
+  }
+
+  update1()
+  {
+    setState(() {
+      switch1 = !switch1;
+    });
   }
 }

@@ -1,7 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutterframeassit/Farm.dart';
 import 'package:flutterframeassit/WaterPlants.dart';
+import 'package:intl/intl.dart';
+import 'package:flutterframeassit/test.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -32,9 +36,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  var screens = [
+      FarmScreen(),
+      // WaterPlantsScreen(),
+      YellowBird(),
+    ];
+  int selectedTab = 0;
+  String _timeString;
+  
   final DatabaseReference database = FirebaseDatabase.instance.reference().child("Click");
-
+  int _counter = 0;
+  
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -52,29 +64,23 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  var screens = [
-      FarmScreen(),
-      WaterPlantsScreen(),
-    ];
-  int selectedTab = 0;
-
  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50), // here the desired height
         child: AppBar(
-         title: Text('Orchid Care'),
+         title: Text(_timeString),
          backgroundColor: Colors.blue,
          centerTitle: true,
-        )
+        ),
        ),
       backgroundColor: Color.fromRGBO(38, 81, 158, 1),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
-            title: Text("Farm"),
+            title: Text('Farm'),
           ),
 
           BottomNavigationBarItem(
@@ -95,4 +101,27 @@ class _MyHomePageState extends State<MyHomePage> {
       body: screens[selectedTab],
     );
   }
+
+  /////----------------------------------------
+  @override
+  void initState() {
+    _timeString = _formatDateTime(DateTime.now());
+    print(_timeString);
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    super.initState();
+  }
+
+  void _getTime() {
+    final DateTime now = DateTime.now();
+    final String formattedDateTime = _formatDateTime(now);
+    setState(() {
+      _timeString = formattedDateTime;
+    });
+  }
+
+  String _formatDateTime(DateTime dateTime) {
+    return DateFormat('hh:mm:ss').format(dateTime);
+  }
+  /////----------------------------------------
+
 }
