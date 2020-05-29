@@ -1,0 +1,14 @@
+{
+  "DisplayLanguage": "EN",
+    "Label": {
+      "Field1": {
+        "EN": "Water In Tank",
+        "TH": "น้ำในถัง"
+      },
+      "Field2": {
+        "EN": "farm1",
+        "TH": "สวน1"
+      }
+    }
+}
+  

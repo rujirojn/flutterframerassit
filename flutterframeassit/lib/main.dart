@@ -17,6 +17,12 @@ class DataWaterPlants {
   static bool switch1 = true;
 }
 
+class FireBaseDB{
+    static bool loaded ;
+    static String displaylanguage;
+    static DataSnapshot snapshot;
+}
+
 void main() {
   runApp(MyApp());
 }
@@ -56,9 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   int selectedTab = 0;
   String _timeString;
-  
-  final DatabaseReference database = FirebaseDatabase.instance.reference().child("Click");
-  int _counter = 0;
+  // int _counter = 0;
   
  @override
   Widget build(BuildContext context) {
@@ -106,34 +110,49 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-      //insert
-      database.reference().update({'key'+(_counter).toString() : 'insert'+(_counter).toString()});
-      //update
-      database.reference().update({'key'+(_counter - 1).toString() : 'update'+(_counter-1).toString()});
-      //delete
-      database.child('key'+(_counter - 3).toString()).remove();
-      //get
-      database.child('key'+(_counter).toString()).once().then((DataSnapshot snapshot) {
-        print('Data : ${snapshot.value}');
-      });
-      // database.push().set({'insert' : 'insert'+_counter.toString()});
-    });
-  }
+  // void _incrementCounter() {
+  //   setState(() {
+  //     _counter++;
+  //     //insert
+  //     database.reference().update({'key'+(_counter).toString() : 'insert'+(_counter).toString()});
+  //     //update
+  //     database.reference().update({'key'+(_counter - 1).toString() : 'update'+(_counter-1).toString()});
+  //     //delete
+  //     database.child('key'+(_counter - 3).toString()).remove();
+  //     //get
+  //     database.child('key'+(_counter).toString()).once().then((DataSnapshot snapshot) {
+  //       print('Data : ${snapshot.value}');
+  //     });
+  //     // database.push().set({'insert' : 'insert'+_counter.toString()});
+  //   });
+  // }
 
-    void setStaticData()
+    Future setStaticData() async
     {
-      Media.itemWidth = MediaQuery.of(context).size.width * 0.8;
-      Media.itemheight = MediaQuery.of(context).size.height * 0.8;
+        Media.itemWidth = MediaQuery.of(context).size.width * 0.8;
+        Media.itemheight = MediaQuery.of(context).size.height * 0.8;
+
+        if(FireBaseDB.loaded != true)
+        {
+          final DatabaseReference database = FirebaseDatabase.instance.reference();
+
+          await database.child('DisplayLanguage').once().then((DataSnapshot snapshot) {
+            FireBaseDB.displaylanguage = snapshot.value.toString();
+          });
+
+          String rootSelect = 'Label';
+          await database.child(rootSelect).once().then((DataSnapshot snapshot) {
+            FireBaseDB.snapshot = snapshot;
+            FireBaseDB.loaded = true;
+            // print(FireBaseDB.snapshot.value['Field1'][FireBaseDB.displaylanguage]);
+          });
+        }
     }
 
   /////----------------------------------------
   @override
   void initState() {
     _timeString = _formatDateTime(DateTime.now());
-    print(_timeString);
     Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
     super.initState();
   }
