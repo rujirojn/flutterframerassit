@@ -6,7 +6,6 @@ import 'package:flutterframeassit/WaterPlants.dart';
 import 'package:intl/intl.dart';
 import 'package:flutterframeassit/test.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -28,6 +27,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  final String testaa = '1';
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
 
@@ -38,8 +38,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var screens = [
       FarmScreen(),
-      // WaterPlantsScreen(),
-      YellowBird(),
+      WaterPlantsScreen(),
     ];
   int selectedTab = 0;
   String _timeString;
