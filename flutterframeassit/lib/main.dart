@@ -4,8 +4,14 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
 
 //Ref Page
+import 'package:flutterframeassit/home.dart';
 import 'package:flutterframeassit/Farm.dart';
 import 'package:flutterframeassit/WaterPlants.dart';
+
+class Media{
+  static double itemWidth;
+  static double itemheight;
+}
 
 class DataWaterPlants {
   static bool switch1 = true;
@@ -16,6 +22,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -23,6 +30,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: 'Kanit',
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
@@ -42,6 +50,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var screens = [
+      HomeScreen(),
       FarmScreen(),
       WaterPlantsScreen(),
     ];
@@ -51,25 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final DatabaseReference database = FirebaseDatabase.instance.reference().child("Click");
   int _counter = 0;
   
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-      //insert
-      database.reference().update({'key'+(_counter).toString() : 'insert'+(_counter).toString()});
-      //update
-      database.reference().update({'key'+(_counter - 1).toString() : 'update'+(_counter-1).toString()});
-      //delete
-      database.child('key'+(_counter - 3).toString()).remove();
-      //get
-      database.child('key'+(_counter).toString()).once().then((DataSnapshot snapshot) {
-        print('Data : ${snapshot.value}');
-      });
-      // database.push().set({'insert' : 'insert'+_counter.toString()});
-    });
-  }
-
  @override
   Widget build(BuildContext context) {
+    // Media.itemWidth = MediaQuery.of(context).size.width * 0.8;
+    // Media.itemheight = MediaQuery.of(context).size.height * 0.8;
+    setStaticData();
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50), // here the desired height
@@ -82,6 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Color.fromRGBO(38, 81, 158, 1),
       bottomNavigationBar: BottomNavigationBar(
         items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
             title: Text('Farm'),
@@ -105,6 +105,29 @@ class _MyHomePageState extends State<MyHomePage> {
       body: screens[selectedTab],
     );
   }
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+      //insert
+      database.reference().update({'key'+(_counter).toString() : 'insert'+(_counter).toString()});
+      //update
+      database.reference().update({'key'+(_counter - 1).toString() : 'update'+(_counter-1).toString()});
+      //delete
+      database.child('key'+(_counter - 3).toString()).remove();
+      //get
+      database.child('key'+(_counter).toString()).once().then((DataSnapshot snapshot) {
+        print('Data : ${snapshot.value}');
+      });
+      // database.push().set({'insert' : 'insert'+_counter.toString()});
+    });
+  }
+
+    void setStaticData()
+    {
+      Media.itemWidth = MediaQuery.of(context).size.width * 0.8;
+      Media.itemheight = MediaQuery.of(context).size.height * 0.8;
+    }
 
   /////----------------------------------------
   @override

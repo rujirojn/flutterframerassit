@@ -32,7 +32,7 @@ dependencies:
   firebase_core: ^0.4.4+3
   firebase_auth: ^0.16.1
   intl: ^0.16.1
-  # flutter_timer: ^0.0.6
+  percent_indicator: ^2.1.3
   
 dev_dependencies:
   flutter_test:
@@ -43,7 +43,12 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
+  fonts:
+      - family: Kanit
+        fonts:
+          - asset: fonts/Kanit-Regular.ttf
+          - asset: fonts/Kanit-Italic.ttf
+            style: italic
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
