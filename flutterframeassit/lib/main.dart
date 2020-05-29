@@ -1,10 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:intl/intl.dart';
+
+//Ref Page
 import 'package:flutterframeassit/Farm.dart';
 import 'package:flutterframeassit/WaterPlants.dart';
-import 'package:intl/intl.dart';
-import 'package:flutterframeassit/test.dart';
+
+class DataWaterPlants {
+  static bool switch1 = true;
+}
 
 void main() {
   runApp(MyApp());

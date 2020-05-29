@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterframeassit/main.dart';
 
 class WaterPlantsScreen extends StatefulWidget {
   const WaterPlantsScreen({ Key key }) : super(key: key);
@@ -8,9 +9,8 @@ class WaterPlantsScreen extends StatefulWidget {
 }
 
 class _WaterPlantsScreen extends State<WaterPlantsScreen> {
-  bool switch1 = false;
-
   Widget build(BuildContext context) {
+
     return Container(
       height: MediaQuery.of(context).size.height,
       width: double.infinity,
@@ -272,7 +272,7 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
                           ],
                         ),
                         Switch(
-                          value: switch1,
+                          value: DataWaterPlants.switch1,
                           activeColor: Color.fromRGBO(50, 172, 121, 1),
                           onChanged: (_){update1();},
                         ),
@@ -303,7 +303,7 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
   update1()
   {
     setState(() {
-      switch1 = !switch1;
+      DataWaterPlants.switch1 = !DataWaterPlants.switch1;
     });
   }
 }
