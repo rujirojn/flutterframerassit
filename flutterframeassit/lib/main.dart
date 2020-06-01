@@ -23,6 +23,21 @@ class FireBaseDB{
     static DataSnapshot snapshot;
 }
 
+class DB{
+    static String getLabel(inputPath)
+    {
+      if(FireBaseDB.snapshot != null)
+      {
+          return (FireBaseDB.snapshot.value[inputPath][FireBaseDB.displaylanguage] ?? '');
+      }
+      else
+      {
+          return '';
+      }
+      
+    }
+}
+
 void main() {
   runApp(MyApp());
 }
@@ -38,7 +53,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Kanit',
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        // visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Orchid Care'),
     );
@@ -55,20 +70,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var screens = [
-      HomeScreen(),
-      FarmScreen(),
-      WaterPlantsScreen(),
-    ];
+  
   int selectedTab = 0;
   String _timeString;
   // int _counter = 0;
   
  @override
   Widget build(BuildContext context) {
-    // Media.itemWidth = MediaQuery.of(context).size.width * 0.8;
-    // Media.itemheight = MediaQuery.of(context).size.height * 0.8;
     setStaticData();
+
+    var screens = [
+      HomeScreen(),
+      FarmScreen(),
+      WaterPlantsScreen(),
+    ];
 
     return Scaffold(
       appBar: PreferredSize(
@@ -144,7 +159,6 @@ class _MyHomePageState extends State<MyHomePage> {
           await database.child(rootSelect).once().then((DataSnapshot snapshot) {
             FireBaseDB.snapshot = snapshot;
             FireBaseDB.loaded = true;
-            // print(FireBaseDB.snapshot.value['Field1'][FireBaseDB.displaylanguage]);
           });
         }
     }

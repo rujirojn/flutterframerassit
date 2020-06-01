@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:firebase_database/firebase_database.dart';
 
 //Ref Page
 import 'package:flutterframeassit/main.dart';
@@ -12,18 +11,8 @@ class HomeScreen extends StatefulWidget {
   _HomeScreen createState() => _HomeScreen();
 }
 
-class FireBaseDB{
-    bool loaded ;
-    static String displaylanguage;
-    DataSnapshot snapshot;
-}
-
 class _HomeScreen extends State<HomeScreen> {
   Widget build(BuildContext context) {
-    setStaticData();
-    // debugPrint('$FireBaseDB.snapshot');
-    // print('home 2 : ' + (FireBaseDB.snapshot ?? 'null2'));
-    // print('home 3 : ' + (FireBaseDB.snapshot.value['Field1'][FireBaseDB.displaylanguage] ?? 'null3'));
 
     return Container(
       height: MediaQuery.of(context).size.height,
@@ -63,7 +52,7 @@ class _HomeScreen extends State<HomeScreen> {
                                         lineHeight: 30.0,
                                         percent: 0.4,
                                         progressColor: Colors.green,
-                                        center: Text("water in tank"),
+                                        center: Text(DB.getLabel('Field1')),
                                         animation: true,
 
                                         // new LinearPercentIndicator(
@@ -128,10 +117,5 @@ class _HomeScreen extends State<HomeScreen> {
 
       // )
       // );
-  }
-
-  setStaticData()
-  {
-    
   }
 }
