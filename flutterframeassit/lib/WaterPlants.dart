@@ -161,89 +161,6 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
 
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      boxShadow: [BoxShadow(
-                        color: Colors.grey[100],
-                        spreadRadius: 10.0,
-                        blurRadius: 4.5
-                      )]
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    margin: EdgeInsets.symmetric(horizontal: 32),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Icon(
-                              Icons.wifi_tethering,
-                              color: Colors.lightBlue[900],
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-
-                            Text("Card Settings", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.grey[700]),)
-
-                          ],
-                        ),
-                        Switch(
-                          value: true,
-                          activeColor: Color.fromRGBO(50, 172, 121, 1),
-                          onChanged: (_){},
-                        )
-
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        boxShadow: [BoxShadow(
-                            color: Colors.grey[100],
-                            spreadRadius: 10.0,
-                            blurRadius: 4.5
-                        )]
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    margin: EdgeInsets.symmetric(horizontal: 32),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Icon(
-                              Icons.credit_card,
-                              color: Colors.lightBlue[900],
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-
-                            Text("Online Payment", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.grey[700]),)
-
-                          ],
-                        ),
-                        Switch(
-                          value: true,
-                          activeColor: Color.fromRGBO(50, 172, 121, 1),
-                          onChanged: (_){},
-                        )
-
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         boxShadow: [BoxShadow(
@@ -304,6 +221,7 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
   {
     setState(() {
       DataWaterPlants.switch1 = !DataWaterPlants.switch1;
+      print(DataWaterPlants.switch1);
     });
   }
 }

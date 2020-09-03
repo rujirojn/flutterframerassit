@@ -24,17 +24,42 @@ class FireBaseDB{
 }
 
 class DB{
-    static String getLabel(inputPath)
+    static String getLabel(homepage,fieldname)
     {
       if(FireBaseDB.snapshot != null)
       {
-          return (FireBaseDB.snapshot.value[inputPath][FireBaseDB.displaylanguage] ?? '');
+        try
+        {
+            return (FireBaseDB.snapshot.value[homepage]['Label'][fieldname][FireBaseDB.displaylanguage].toString() ?? '');
+        }
+        catch (Exception) {
+            print('not found : ' + homepage + '.Label.' + fieldname);
+            return '';
+        }
       }
       else
       {
           return '';
       }
-      
+    }
+
+    static String getData(homepage,fieldname)
+    {
+      if(FireBaseDB.snapshot != null)
+      {
+        try
+        {
+          return (FireBaseDB.snapshot.value[homepage]['Data'][fieldname].toString() ?? '');
+        }
+        catch (Exception) {
+            print('not found : ' + homepage + '.Data.' + fieldname);
+            return '0';
+        }
+      }
+      else
+      {
+          return '';
+      }
     }
 }
 
@@ -155,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
             FireBaseDB.displaylanguage = snapshot.value.toString();
           });
 
-          String rootSelect = 'Label';
+          String rootSelect = 'Pages';
           await database.child(rootSelect).once().then((DataSnapshot snapshot) {
             FireBaseDB.snapshot = snapshot;
             FireBaseDB.loaded = true;

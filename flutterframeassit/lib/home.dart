@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -35,13 +37,14 @@ class _HomeScreen extends State<HomeScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text("Status", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: Colors.black),),
+                            Text(DB.getLabel('Home','Title'), style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: Colors.black),),
                           ],
                         ),
                       ],
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 32),
                   ),
+                SizedBox(height: 24),
                 Container(
                   child : Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -50,21 +53,42 @@ class _HomeScreen extends State<HomeScreen> {
                                         padding: EdgeInsets.all(5),
                                         width: Media.itemWidth,
                                         lineHeight: 30.0,
-                                        percent: 0.4,
+                                        percent: double.parse(DB.getData('Home','Tank1')),
                                         progressColor: Colors.green,
-                                        center: Text(DB.getLabel('Field1')),
+                                        center: Text(DB.getLabel('Home','Tank1')),
                                         animation: true,
-
-                                        // new LinearPercentIndicator(
-                                        // padding: EdgeInsets.all(5),
-                                        // width: Media.width - 50,
-                                        // animation: true,
-                                        // lineHeight: 30.0,
-                                        // animationDuration: 2500,
-                                        // percent: 0.8,
-                                        // center: Text("Water in tank"),
-                                        // linearStrokeCap: LinearStrokeCap.roundAll,
-                                        // progressColor: Colors.green,
+                                      ),],
+                  )
+                ),
+                SizedBox(height: 24),
+                Container(
+                  child : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[                          
+                                        new LinearPercentIndicator(
+                                        padding: EdgeInsets.all(5),
+                                        width: Media.itemWidth,
+                                        lineHeight: 30.0,
+                                        percent: double.parse(DB.getData('Home','Tank2')),
+                                        progressColor: Colors.green,
+                                        center: Text(DB.getLabel('Home','Tank2')),
+                                        animation: true,
+                                      ),],
+                  )
+                ),
+                SizedBox(height: 24)
+                ,Container(
+                  child : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[                          
+                                        new LinearPercentIndicator(
+                                        padding: EdgeInsets.all(5),
+                                        width: Media.itemWidth,
+                                        lineHeight: 30.0,
+                                        percent: double.parse(DB.getData('Home','Tank3')),
+                                        progressColor: Colors.green,
+                                        center: Text(DB.getLabel('Home','Tank3')),
+                                        animation: true,
                                       ),],
                   )
                 )

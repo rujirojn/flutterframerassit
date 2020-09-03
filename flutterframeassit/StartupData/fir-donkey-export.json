@@ -1,14 +1,30 @@
 {
-  "DisplayLanguage": "EN",
-    "Label": {
-      "Field1": {
-        "EN": "Water In Tank",
-        "TH": "น้ำในถัง"
-      },
-      "Field2": {
-        "EN": "farm1",
-        "TH": "สวน1"
+  "DisplayLanguage" : "TH",
+  "Pages" : {
+    "Home" : {
+      "Label" : {
+        "Tank1" : {
+          "EN" : "Front tank(3 tanks)",
+          "TH" : "น้ำถังหน้า (3 ถัง)"
+        },
+        "Tank2" : {
+          "EN" : "back tank(2 tanks)",
+          "TH" : "น้ำถังหลัง (2 ถัง)"
+        },
+        "Tank3" : {
+          "EN" : "back tank(3 tanks)",
+          "TH" : "น้ำถังท้ายสุด (3 ถัง)"
+        }
+        ,"Title" : {
+          "EN" : "Water Content",
+          "TH" : "ปริมาณน้ำในถัง"
+        }
+      }
+      ,"Data" : {
+        "Tank1" : 45
+        ,"Tank2" : 80
+        ,"Tank3" : 70
       }
     }
+  }
 }
-  
