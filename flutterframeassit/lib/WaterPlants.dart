@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterframeassit/main.dart';
+import 'package:flutter_duration_picker/flutter_duration_picker.dart';
 
 class WaterPlantsScreen extends StatefulWidget {
   const WaterPlantsScreen({ Key key }) : super(key: key);
@@ -10,6 +11,7 @@ class WaterPlantsScreen extends StatefulWidget {
 
 class _WaterPlantsScreen extends State<WaterPlantsScreen> {
   Widget build(BuildContext context) {
+  Duration _duration = Duration(hours: 0, minutes: 0);
 
     return Container(
       height: MediaQuery.of(context).size.height,
@@ -33,13 +35,9 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text("Your Cards", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: Colors.black),),
-                            Text("2 Physical Card, and 1 Virtual Card", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: Colors.grey),),
+                            // Text("2 Physical Card, and 1 Virtual Card", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: Colors.grey),),
                           ],
                         ),
-
-                        IconButton(
-                          icon: Icon(Icons.more_horiz, color: Colors.lightBlue[900], size: 30,), onPressed: () {},
-                        )
                       ],
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 32),
@@ -47,102 +45,6 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
 
                   SizedBox(
                     height: 16,
-                  ),
-
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 32),
-                    child: Row(
-                      children: <Widget>[
-                        //copy same button
-                        Container(
-                          child: Text("Physical Card", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: Colors.grey[900]),),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [BoxShadow(color: Colors.grey[200], blurRadius: 10.0, spreadRadius: 4.5)]
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        ),
-
-                        SizedBox(width: 16,),
-
-                        Container(
-                          child: Text("Virtual Card", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: Colors.grey[900]),),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [BoxShadow(color: Colors.grey[200], blurRadius: 10.0, spreadRadius: 4.5)]
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  //Container for card
-                  SizedBox(
-                    height: 16,
-                  ),
-
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 32),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: Color.fromRGBO(35, 60, 103, 1),
-                    ),
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            CircleAvatar(
-                              radius: 16,
-                              backgroundColor: Color.fromRGBO(50, 172, 121, 1),
-                              child: Icon(Icons.check, color: Colors.white, size: 24,),
-                            ),
-
-                            Text("VISA", style: TextStyle(fontStyle: FontStyle.italic, fontSize: 28, color: Colors.white, fontWeight: FontWeight.w900),)
-                          ],
-                        ),
-                        SizedBox(height: 32,),
-
-                        Text("**** **** **** 5647", style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w700, letterSpacing: 2.0),),
-
-                        SizedBox(height: 32,),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text("CARD HOLDER", style: TextStyle(fontSize: 12, color: Colors.blue[100], fontWeight: FontWeight.w700, letterSpacing: 2.0),),
-                                Text("Maaz Aftab", style: TextStyle(fontSize: 16, color: Colors.grey[100], fontWeight: FontWeight.w700, letterSpacing: 2.0),),
-                              ],
-                            ),
-
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text("EXPIRES", style: TextStyle(fontSize: 12, color: Colors.blue[100], fontWeight: FontWeight.w700, letterSpacing: 2.0),),
-                                Text("8/22", style: TextStyle(fontSize: 16, color: Colors.grey[100], fontWeight: FontWeight.w700, letterSpacing: 2.0),),
-                              ],
-                            ),
-
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text("CVV", style: TextStyle(fontSize: 12, color: Colors.blue[100], fontWeight: FontWeight.w700, letterSpacing: 2.0),),
-                                Text("845", style: TextStyle(fontSize: 16, color: Colors.grey[100], fontWeight: FontWeight.w700, letterSpacing: 2.0),),
-                              ],
-                            )
-                          ],
-                        )
-
-                      ],
-                    )
                   ),
 
                   SizedBox(
@@ -198,6 +100,32 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
                         //   onChanged: (_) {},
                         // ),
                       ],
+                    ),
+                  ),Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [BoxShadow(
+                            color: Colors.grey[100],
+                            spreadRadius: 10.0,
+                            blurRadius: 4.5
+                        )]
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                    margin: EdgeInsets.symmetric(horizontal: 32),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                                        new Expanded(
+                                          child: DurationPicker(
+                                          duration: _duration,
+                                          onChange: (val) {
+                                            print(val);
+                                            this.setState(() => _duration = val);
+                                          },
+                                          snapToMins: 5.0,
+                                        ))
+                                      ],
                     ),
                   )
 
