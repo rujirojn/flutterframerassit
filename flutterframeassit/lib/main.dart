@@ -42,13 +42,12 @@ class DB{
            
         }
         catch (Exception) {
-            print('not found : ' + homepage + '.Data.' + fieldname);
-            return '0';
+          return '0';
         }
       }
       else
       {
-          return '';
+          return '0';
       }
     }
 }
