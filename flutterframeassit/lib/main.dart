@@ -24,32 +24,22 @@ class FireBaseDB{
 }
 
 class DB{
-    static String getLabel(homepage,fieldname)
+  
+    static String getData(homepage,displaytype,fieldname)
     {
       if(FireBaseDB.snapshot != null)
       {
         try
         {
-            return (FireBaseDB.snapshot.value[homepage]['Label'][fieldname][FireBaseDB.displaylanguage].toString() ?? '');
-        }
-        catch (Exception) {
-            print('not found : ' + homepage + '.Label.' + fieldname);
-            return '';
-        }
-      }
-      else
-      {
-          return '';
-      }
-    }
-
-    static String getData(homepage,fieldname)
-    {
-      if(FireBaseDB.snapshot != null)
-      {
-        try
-        {
-          return (FireBaseDB.snapshot.value[homepage]['Data'][fieldname].toString() ?? '');
+          if(displaytype == 'Label')
+          {
+            return (FireBaseDB.snapshot.value[homepage][displaytype][fieldname][FireBaseDB.displaylanguage].toString() ?? '');
+          }
+          else
+          {
+            return (FireBaseDB.snapshot.value[homepage][displaytype][fieldname].toString() ?? '');
+          }
+           
         }
         catch (Exception) {
             print('not found : ' + homepage + '.Data.' + fieldname);

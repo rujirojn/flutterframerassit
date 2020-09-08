@@ -1,4 +1,4 @@
-import 'dart:convert';
+// import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -37,7 +37,7 @@ class _HomeScreen extends State<HomeScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(DB.getLabel('Home','Title'), style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: Colors.black),),
+                            Text(DB.getData('Home','Label','Title'), style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: Colors.black),),
                           ],
                         ),
                       ],
@@ -53,9 +53,9 @@ class _HomeScreen extends State<HomeScreen> {
                                         padding: EdgeInsets.all(5),
                                         width: Media.itemWidth,
                                         lineHeight: 30.0,
-                                        percent: double.parse(DB.getData('Home','Tank1')),
+                                        percent: double.parse(DB.getData('Home','Data','Tank1')),
                                         progressColor: Colors.green,
-                                        center: Text(DB.getLabel('Home','Tank1')),
+                                        center: Text(DB.getData('Home','Label','Tank1')),
                                         animation: true,
                                       ),],
                   )
@@ -69,9 +69,9 @@ class _HomeScreen extends State<HomeScreen> {
                                         padding: EdgeInsets.all(5),
                                         width: Media.itemWidth,
                                         lineHeight: 30.0,
-                                        percent: double.parse(DB.getData('Home','Tank2')),
+                                        percent: double.parse(DB.getData('Home','Data','Tank2')),
                                         progressColor: Colors.green,
-                                        center: Text(DB.getLabel('Home','Tank2')),
+                                        center: Text(DB.getData('Home','Label','Tank2')),
                                         animation: true,
                                       ),],
                   )
@@ -85,9 +85,9 @@ class _HomeScreen extends State<HomeScreen> {
                                         padding: EdgeInsets.all(5),
                                         width: Media.itemWidth,
                                         lineHeight: 30.0,
-                                        percent: double.parse(DB.getData('Home','Tank3')),
+                                        percent: double.parse(DB.getData('Home','Data','Tank3')),
                                         progressColor: Colors.green,
-                                        center: Text(DB.getLabel('Home','Tank3')),
+                                        center: Text(DB.getData('Home','Label','Tank3')),
                                         animation: true,
                                       ),],
                   )
