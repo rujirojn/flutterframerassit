@@ -13,10 +13,6 @@ class Media{
   static double itemheight;
 }
 
-class DataWaterPlants {
-  static bool switch1 = true;
-}
-
 class FireBaseDB{
     static bool loaded ;
     static String displaylanguage;

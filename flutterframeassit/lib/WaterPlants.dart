@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterframeassit/main.dart';
+import 'package:flutterframeassit/Model.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
 
 class WaterPlantsScreen extends StatefulWidget {
@@ -10,9 +10,9 @@ class WaterPlantsScreen extends StatefulWidget {
 }
 
 class _WaterPlantsScreen extends State<WaterPlantsScreen> {
-  Widget build(BuildContext context) {
   Duration _duration = Duration(hours: 0, minutes: 0);
-
+  
+  Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
       width: double.infinity,
@@ -34,7 +34,7 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text("Your Cards", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: Colors.black),),
+                            Text("ระบบน้ำ", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: Colors.black),),
                             // Text("2 Physical Card, and 1 Virtual Card", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: Colors.grey),),
                           ],
                         ),
@@ -42,80 +42,67 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 32),
                   ),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //       color: Colors.white,
+                  //       borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //       boxShadow: [BoxShadow(
+                  //           color: Colors.grey[100],
+                  //           spreadRadius: 10.0,
+                  //           blurRadius: 4.5
+                  //       )]
+                  //   ),
+                  //   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  //   margin: EdgeInsets.symmetric(horizontal: 32),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: <Widget>[
+                  //       Row(
+                  //         children: <Widget>[
+                  //           Icon(
+                  //             Icons.mobile_screen_share,
+                  //             color: Colors.lightBlue[900],
+                  //           ),
+                  //           SizedBox(
+                  //             width: 16,
+                  //           ),
 
+                  //           Text("ATM Withdraws", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.grey[700]),)
+
+                  //         ],
+                  //       ),
+                  //       Switch(
+                  //         value: DataWaterPlants.switch1,
+                  //         activeColor: Color.fromRGBO(50, 172, 121, 1),
+                  //         onChanged: (_){update1();},
+                  //       ),
+                  //       // CupertinoSwitch(
+                  //       //   value: true,
+                  //       //   onChanged: (_) {},
+                  //       // ),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 16,
                   ),
-
+                  GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          hideAlldisplayDurationfarm1();
+                          DataWaterPlants.displayDurationfarm1 = !DataWaterPlants.displayDurationfarm1;
+                        });
+                      },
+                      child: buildcontainer('Farm1','กำลังรดน้ำ','นับถอยหลัง 10 นาที','จากทั้งหมด 15 นาที'),
+                  ), 
                   SizedBox(
                     height: 16,
-                  ),
-
-
-                  Container(
-                    child: Text("Card Settings", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.black),),
-                    padding: EdgeInsets.symmetric(horizontal: 32),
-                  ),
-
-                  SizedBox(
-                    height: 16,
-                  ),
-
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        boxShadow: [BoxShadow(
-                            color: Colors.grey[100],
-                            spreadRadius: 10.0,
-                            blurRadius: 4.5
-                        )]
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    margin: EdgeInsets.symmetric(horizontal: 32),
-                    child: Row(
+                  ),  
+                  Visibility (
+                      visible: DataWaterPlants.displayDurationfarm1,
+                      child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Icon(
-                              Icons.mobile_screen_share,
-                              color: Colors.lightBlue[900],
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-
-                            Text("ATM Withdraws", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.grey[700]),)
-
-                          ],
-                        ),
-                        Switch(
-                          value: DataWaterPlants.switch1,
-                          activeColor: Color.fromRGBO(50, 172, 121, 1),
-                          onChanged: (_){update1();},
-                        ),
-                        // CupertinoSwitch(
-                        //   value: true,
-                        //   onChanged: (_) {},
-                        // ),
-                      ],
-                    ),
-                  ),Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        boxShadow: [BoxShadow(
-                            color: Colors.grey[100],
-                            spreadRadius: 10.0,
-                            blurRadius: 4.5
-                        )]
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    margin: EdgeInsets.symmetric(horizontal: 32),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
+                      children: <Widget>[ 
                                         new Expanded(
                                           child: DurationPicker(
                                           duration: _duration,
@@ -123,11 +110,12 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
                                             print(val);
                                             this.setState(() => _duration = val);
                                           },
-                                          snapToMins: 1.0,
+                                          snapToMins: 5.0,
                                         ))
                                       ],
+                                  ),
                     ),
-                  )
+
 
 
                 ],
@@ -145,11 +133,63 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
     );
   }
 
-  update1()
+  Container buildcontainer(labelTopL,labelTopR,labelBotL,labelBotR){
+   return Container(
+                      margin: EdgeInsets.symmetric(horizontal: 32),
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20))
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey[100],
+                                borderRadius: BorderRadius.all(Radius.circular(18))
+                            ),
+                            child: Icon(Icons.whatshot, color: Colors.lightBlue[900],),
+                            padding: EdgeInsets.all(12),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(labelTopL, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.grey[900]),),
+                                Text(labelTopR, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Colors.grey[500]),),
+                              ],
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                              Text(labelBotL, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.lightGreen),),
+                              Text(labelBotR, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Colors.grey[500]),),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+  }
+
+
+  hideAlldisplayDurationfarm1()
   {
     setState(() {
-      DataWaterPlants.switch1 = !DataWaterPlants.switch1;
-      print(DataWaterPlants.switch1);
-    });
+        // DataWaterPlants.displayDurationfarm1 = false;
+        // DataWaterPlants.displayDurationfarm2 = false; 
+        // DataWaterPlants.displayDurationfarm3 = false;
+        // DataWaterPlants.displayDurationfarm4 = false;
+        // DataWaterPlants.displayDurationfarm5 = false;
+        // DataWaterPlants.displayDurationfarm6 = false;
+    });   
   }
+  
+  // update1()
+  // {
+  //   setState(() {
+  //     DataWaterPlants.displayDurationfarm1 = !DataWaterPlants.displayDurationfarm1;
+  //     print(DataWaterPlants.displayDurationfarm1);
+  //   });
+  // }
 }
