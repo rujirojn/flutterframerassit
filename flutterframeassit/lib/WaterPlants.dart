@@ -123,7 +123,7 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
                                             print(val);
                                             this.setState(() => _duration = val);
                                           },
-                                          snapToMins: 5.0,
+                                          snapToMins: 1.0,
                                         ))
                                       ],
                     ),
