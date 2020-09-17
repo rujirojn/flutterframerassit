@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterframeassit/Model.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
+import 'package:flutter_xlider/flutter_xlider.dart';
 
 class WaterPlantsScreen extends StatefulWidget {
   const WaterPlantsScreen({ Key key }) : super(key: key);
@@ -11,6 +12,8 @@ class WaterPlantsScreen extends StatefulWidget {
 
 class _WaterPlantsScreen extends State<WaterPlantsScreen> {
   Duration _duration = Duration(hours: 0, minutes: 0);
+  double _lowerValue = 0;
+  double _upperValue = 30;
   
   Widget build(BuildContext context) {
     return Container(
@@ -95,29 +98,39 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
                       },
                       child: buildcontainer('Farm1','กำลังรดน้ำ','นับถอยหลัง 10 นาที','จากทั้งหมด 15 นาที'),
                   ), 
-                  SizedBox(
-                    height: 16,
-                  ),  
                   Visibility (
                       visible: DataWaterPlants.displayDurationfarm1,
-                      child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[ 
-                                        new Expanded(
-                                          child: DurationPicker(
-                                          duration: _duration,
-                                          onChange: (val) {
-                                            print(val);
-                                            this.setState(() => _duration = val);
-                                          },
-                                          snapToMins: 5.0,
-                                        ))
-                                      ],
-                                  ),
-                    ),
-
-
-
+                      child: FlutterSlider(
+                      values: [_lowerValue],
+                      max: 30,
+                      min: 0,
+                      rtl: false,
+                        trackBar: FlutterSliderTrackBar(
+                        inactiveTrackBar: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.green,
+                        border: Border.all(width: 3, color: Colors.blue),
+      ),
+                      ),
+                      // hatchMark: FlutterSliderHatchMark(
+                      //   density: 0.5, // means 50 lines, from 0 to 100 percent
+                      //   labels: [
+                      //     FlutterSliderHatchMarkLabel(percent: 0, label: Text('เหลือ')),
+                      //     FlutterSliderHatchMarkLabel(percent: 100, label: Text('เวลา')),
+                      //   ],
+                      // ),
+                      handlerAnimation: FlutterSliderHandlerAnimation(
+                          curve: Curves.elasticOut,
+                          reverseCurve: null,
+                          duration: Duration(milliseconds: 700),
+                          scale: 2),
+                      onDragging: (handlerIndex, lowerValue, upperValue) {
+                        setState(() {
+                          _lowerValue = lowerValue;
+                        });
+                      },
+                    )
+                  ),
                 ],
               ),
             ),

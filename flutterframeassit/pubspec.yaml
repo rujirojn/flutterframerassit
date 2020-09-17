@@ -22,6 +22,7 @@ environment:
 
 dependencies:
   flutter_duration_picker: "^1.0.0"
+  flutter_xlider: ^3.4.0
   flutter:
     sdk: flutter
 
