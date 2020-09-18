@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterframeassit/Model.dart';
-import 'package:flutter_duration_picker/flutter_duration_picker.dart';
+// import 'package:flutter_duration_picker/flutter_duration_picker.dart';
 import 'package:flutter_xlider/flutter_xlider.dart';
 
 class WaterPlantsScreen extends StatefulWidget {
@@ -11,9 +11,8 @@ class WaterPlantsScreen extends StatefulWidget {
 }
 
 class _WaterPlantsScreen extends State<WaterPlantsScreen> {
-  Duration _duration = Duration(hours: 0, minutes: 0);
-  double _lowerValue = 0;
-  double _upperValue = 30;
+  // Duration _duration = Duration(hours: 0, minutes: 0);
+  // double _upperValue = 30;
   
   Widget build(BuildContext context) {
     return Container(
@@ -96,40 +95,11 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
                           DataWaterPlants.displayDurationfarm1 = !DataWaterPlants.displayDurationfarm1;
                         });
                       },
-                      child: buildcontainer('Farm1','กำลังรดน้ำ','นับถอยหลัง 10 นาที','จากทั้งหมด 15 นาที'),
+                      child: buildcontainer(' Farm1',' กำลังรดน้ำ','นับถอยหลัง ' + DataWaterPlants.remainDurationfarm1.toString() + ' นาที','จากทั้งหมด 15 นาที'),
                   ), 
                   Visibility (
                       visible: DataWaterPlants.displayDurationfarm1,
-                      child: FlutterSlider(
-                      values: [_lowerValue],
-                      max: 30,
-                      min: 0,
-                      rtl: false,
-                        trackBar: FlutterSliderTrackBar(
-                        inactiveTrackBar: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.green,
-                        border: Border.all(width: 3, color: Colors.blue),
-      ),
-                      ),
-                      // hatchMark: FlutterSliderHatchMark(
-                      //   density: 0.5, // means 50 lines, from 0 to 100 percent
-                      //   labels: [
-                      //     FlutterSliderHatchMarkLabel(percent: 0, label: Text('เหลือ')),
-                      //     FlutterSliderHatchMarkLabel(percent: 100, label: Text('เวลา')),
-                      //   ],
-                      // ),
-                      handlerAnimation: FlutterSliderHandlerAnimation(
-                          curve: Curves.elasticOut,
-                          reverseCurve: null,
-                          duration: Duration(milliseconds: 700),
-                          scale: 2),
-                      onDragging: (handlerIndex, lowerValue, upperValue) {
-                        setState(() {
-                          _lowerValue = lowerValue;
-                        });
-                      },
-                    )
+                      child: buildFlutterSlider()
                   ),
                 ],
               ),
@@ -146,14 +116,15 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
     );
   }
 
+
   Container buildcontainer(labelTopL,labelTopR,labelBotL,labelBotR){
    return Container(
                       margin: EdgeInsets.symmetric(horizontal: 32),
                       padding: EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),
+                                                  color: Colors.white,
+                                                  borderRadius: BorderRadius.all(Radius.circular(20))
+                                               ),
                       child: Row(
                         children: <Widget>[
                           Container(
@@ -198,6 +169,77 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
     });   
   }
   
+  buildFlutterSlider (){
+   return FlutterSlider(
+                      values: [DataWaterPlants.remainDurationfarm1],
+                      max: 30,
+                      min: 0,
+                      rtl: false,
+                      trackBar: FlutterSliderTrackBar(
+                        activeTrackBarHeight: 10,
+                        inactiveTrackBar: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.green.withOpacity(0.3),
+                        ),
+                         activeTrackBar: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: Colors.green,
+                          ),
+                      ),
+                    handler: customHandler(Icons.watch_later),
+                     tooltip: FlutterSliderTooltip(
+                          textStyle: TextStyle(fontSize: 32, color: Colors.white),
+                          boxStyle: FlutterSliderTooltipBox(
+                                      decoration: BoxDecoration(color: Colors.green),
+                          )
+                      ),
+                      hatchMark: FlutterSliderHatchMark(
+                        density: 0.5, // means 50 lines, from 0 to 100 percent
+                        labels: [
+                          FlutterSliderHatchMarkLabel(percent: 10, label: Text('เหลือ')),
+                          FlutterSliderHatchMarkLabel(percent: 90, label: Text('เวลา')),
+                        ],
+                      ),
+                      handlerAnimation: FlutterSliderHandlerAnimation(
+                          curve: Curves.elasticOut,
+                          reverseCurve: null,
+                          duration: Duration(milliseconds: 700),
+                          scale: 2),
+                      onDragging: (handlerIndex, lowerValue, upperValue) {
+                        setState(() {
+                          DataWaterPlants.remainDurationfarm1 = lowerValue;
+                        });
+                      },
+                    );
+  }
+
+  customHandler(IconData icon) {
+    return FlutterSliderHandler(
+      decoration: BoxDecoration(),
+      child: Container(
+        child: Container(
+          margin: EdgeInsets.all(5),
+          decoration: BoxDecoration(color: Colors.green, shape: BoxShape.circle),
+          child: Icon(
+            icon,
+            color: Colors.white,
+            size: 23,
+          ),
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.green.withOpacity(0.3),
+                spreadRadius: 0.05,
+                blurRadius: 5,
+                offset: Offset(0, 1))
+          ],
+        ),
+      ),
+    );
+  }
   // update1()
   // {
   //   setState(() {
