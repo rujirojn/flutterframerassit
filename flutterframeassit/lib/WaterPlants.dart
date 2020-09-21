@@ -95,12 +95,27 @@ class _WaterPlantsScreen extends State<WaterPlantsScreen> {
                           DataWaterPlants.displayDurationfarm1 = !DataWaterPlants.displayDurationfarm1;
                         });
                       },
-                      child: buildcontainer(' Farm1',' กำลังรดน้ำ','นับถอยหลัง ' + DataWaterPlants.remainDurationfarm1.toString() + ' นาที','จากทั้งหมด 15 นาที'),
+                      child: buildcontainer(' Farm1',' กำลังรดน้ำ','นับถอยหลัง ' + ((DataWaterPlants.remainDurationfarm1).round()).toString() + ' นาที','จากทั้งหมด 15 นาที'),
                   ), 
-                  Visibility (
-                      visible: DataWaterPlants.displayDurationfarm1,
-                      child: buildFlutterSlider()
-                  ),
+                  Container(
+                      margin: EdgeInsets.symmetric(horizontal: 32),
+                      padding: EdgeInsets.all(0),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child:  Visibility (
+                                                  visible: DataWaterPlants.displayDurationfarm1,
+                                                  child: buildFlutterSlider()
+                                              ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                 ],
               ),
             ),
